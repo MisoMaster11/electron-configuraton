@@ -1,6 +1,6 @@
 from typing import Literal
 
-from periodictable import Element, ELEMENTS_DATA
+from periodictable import Element, ELEMENT_NAME_TO_NUMBER
 
 
 ORBITALS = [
@@ -60,19 +60,22 @@ def get_short_electron_configuration(electron_count: int):
 
 def calculate_configuration():
     try:
-        electron_count = app.entry.get()
-        if electron_count.isdigit():
-            electron_count = int(electron_count)
+        user_input = app.entry.get()
+        electron_count = None
+        if user_input.isdigit():
+            electron_count = int(user_input)
             if electron_count < 1:
                 raise PhysicsError("Number of electrons must be at least 1.")
             if electron_count > 118:
                 raise PhysicsError("Number of electrons exceeds known elements (118).")
-        elif hasattr(Element, electron_count[0].upper() + electron_count[1].lower()):
-            electron_count = getattr(Element, electron_count[0].upper() + electron_count[1].lower())
-        elif electron_count in ELEMENTS_DATA.values():
-            pass
+        elif len(user_input) == 2 and hasattr(Element, user_input[0].upper() + user_input[1].lower()):
+            electron_count = getattr(Element, user_input[0].upper() + user_input[1].lower())
         else:
-            raise PhysicsError("Element not found in the periodic table.")
+            found_electron_count = ELEMENT_NAME_TO_NUMBER.get(user_input.lower())
+            if found_electron_count:
+                electron_count = found_electron_count
+            else:
+                raise PhysicsError("Element not found in the periodic table.")
         electron_count = int(electron_count)
         full_config = get_electron_configuration(electron_count)
         short_config = get_short_electron_configuration(electron_count)
