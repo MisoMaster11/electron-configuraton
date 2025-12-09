@@ -1,5 +1,6 @@
 from typing import Literal
 
+import unicodedata
 from periodictable import Element, ELEMENT_NAME_TO_NUMBER
 
 
@@ -56,7 +57,13 @@ def get_short_electron_configuration(electron_count: int):
                 electron_count - noble_gas[0], skip_orbitals=noble_gas[2]
             )
     return get_electron_configuration(electron_count)
- 
+
+
+def remove_diacritics(text: str) -> str:
+    normalized_text = unicodedata.normalize('NFD', text)
+    without_diacritics = normalized_text.encode('ascii', 'ignore').decode('utf-8')
+    return without_diacritics
+
 
 def calculate_configuration():
     try:
@@ -71,7 +78,7 @@ def calculate_configuration():
         elif len(user_input) == 2 and hasattr(Element, user_input[0].upper() + user_input[1].lower()):
             electron_count = getattr(Element, user_input[0].upper() + user_input[1].lower())
         else:
-            found_electron_count = ELEMENT_NAME_TO_NUMBER.get(user_input.lower())
+            found_electron_count = ELEMENT_NAME_TO_NUMBER.get(remove_diacritics(user_input.lower()))
             if found_electron_count:
                 electron_count = found_electron_count
             else:
