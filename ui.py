@@ -66,7 +66,7 @@ class App(ctk.CTk):
             corner_radius=15,
             fg_color=self.settings["entry_and_label_color"],
             font=ctk.CTkFont(family="trebuchet ms", size=25),
-            wraplength=630,
+            wraplength=550,
         )
         self.output_label.grid(row=2, column=0, padx=20, pady=20, sticky="nsew")
 
