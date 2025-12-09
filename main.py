@@ -1,7 +1,7 @@
 from typing import Literal
 
 import unicodedata
-from periodictable import Element, ELEMENT_NAME_TO_NUMBER
+from periodictable import Element, ELEMENTS_DATA, ELEMENT_NAME_TO_NUMBER
 
 
 ORBITALS = [
@@ -86,8 +86,9 @@ def calculate_configuration():
         electron_count = int(electron_count)
         full_config = get_electron_configuration(electron_count)
         short_config = get_short_electron_configuration(electron_count)
+        element_symbol = ELEMENTS_DATA[electron_count]['symbol']
         app.output_label.configure(
-            text=f"{electron_count}e⁻: {full_config}\n\n{electron_count}e⁻: {short_config}"
+            text=f"{convert_to_script(electron_count, 'sub') + element_symbol}: {full_config}\n\n{convert_to_script(electron_count, 'sub') + element_symbol}: {short_config}"
         )
     except PhysicsError as e:
         app.output_label.configure(text=str(e))
