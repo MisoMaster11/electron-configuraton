@@ -26,8 +26,8 @@ class Element:
     Pr, Nd, Pm, Sm, Eu, Gd, Tb, Dy, Ho, Er, Tm, Yb, Lu, Hf = list(range(59, 73))
     Ta, W, Re, Os, Ir, Pt, Au, Hg, Tl, Pb, Bi, Po, At, Rn = list(range(73, 87))
     Fr, Ra, Ac, Th, Pa, U, Np, Pu, Am, Cm, Bk, Cf, Es, Fm = list(range(87, 101))
-    Md, No, Lr, Rf, Db, Sg, Bh, Hs, Mt, Ds, Rg, Cn, Uut = list(range(101, 114))
-    Fl, Uup, Lv, Uus, Uuo = list(range(114, 119))
+    Md, No, Lr, Rf, Db, Sg, Bh, Hs, Mt, Ds, Rg, Cn, Nh = list(range(101, 114))
+    Fl, Mc, Lv, Ts, Og = list(range(114, 119))
 
 
 class Category:
@@ -2261,7 +2261,7 @@ ELEMENTS_DATA = {
         "x": 12,
         "y": 7
     },
-    Element.Uut: {
+    Element.Nh: {
         "name": ("Nihonium"),
         "atomic-mass": 286,
         "boil": 1430,
@@ -2274,7 +2274,7 @@ ELEMENTS_DATA = {
         "number": 113,
         "period": 7,
         "phase": Phase.SOLID,
-        "source": "https://en.wikipedia.org/wiki/Ununtrium",
+        "source": "https://en.wikipedia.org/wiki/Nihonium",
         "summary": "Nihonium is a chemical element with atomic number 113. It has a symbol Nh. It is a synthetic element (an element that can be created in a laboratory but is not found in nature) and is extremely radioactive; its most stable known isotope, nihonium-286, has a half-life of 20 seconds.",
         "symbol": "Nh",
         "x": 13,
@@ -2299,7 +2299,7 @@ ELEMENTS_DATA = {
         "x": 14,
         "y": 7
     },
-    Element.Uup: {
+    Element.Mc: {
         "name": ("Moscovium"),
         "atomic-mass": 289,
         "boil": 1400,
@@ -2312,7 +2312,7 @@ ELEMENTS_DATA = {
         "number": 115,
         "period": 7,
         "phase": Phase.SOLID,
-        "source": "https://en.wikipedia.org/wiki/Ununpentium",
+        "source": "https://en.wikipedia.org/wiki/Moscovium",
         "summary": "Moscovium is the name of a synthetic superheavy element in the periodic table that has the symbol Mc and has the atomic number 115. It is an extremely radioactive element; its most stable known isotope, moscovium-289, has a half-life of only 220 milliseconds. It is also known as eka-bismuth or simply element 115.",
         "symbol": "Mc",
         "x": 15,
@@ -2337,7 +2337,7 @@ ELEMENTS_DATA = {
         "x": 16,
         "y": 7
     },
-    Element.Uus: {
+    Element.Ts: {
         "name": ("Tennessine"),
         "atomic-mass": 294,
         "boil": 883,
@@ -2350,13 +2350,13 @@ ELEMENTS_DATA = {
         "number": 117,
         "period": 7,
         "phase": Phase.SOLID,
-        "source": "https://en.wikipedia.org/wiki/Ununseptium",
+        "source": "https://en.wikipedia.org/wiki/Tennessine",
         "summary": "Tennessine is a superheavy artificial chemical element with an atomic number of 117 and a symbol of Ts. Also known as eka-astatine or element 117, it is the second-heaviest known element and penultimate element of the 7th period of the periodic table. As of 2016, fifteen tennessine atoms have been observed:six when it was first synthesized in 2010, seven in 2012, and two in 2014.",
         "symbol": "Ts",
         "x": 17,
         "y": 7
     },
-    Element.Uuo: {
+    Element.Og: {
         "name": ("Oganesson"),
         "atomic-mass": 294,
         "boil": 35030,
@@ -2369,7 +2369,7 @@ ELEMENTS_DATA = {
         "number": 118,
         "period": 7,
         "phase": Phase.SOLID,
-        "source": "https://en.wikipedia.org/wiki/Ununoctium",
+        "source": "https://en.wikipedia.org/wiki/Oganesson",
         "summary": "Ooganesson is IUPAC's name for the transactinide element with the atomic number 118 and element symbol Og. It is also known as eka-radon or element 118, and on the periodic table of the elements it is a p-block element and the last one of the 7th period. Oganesson is currently the only synthetic member of group 18.",
         "symbol": "Og",
         "x": 18,
