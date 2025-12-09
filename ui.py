@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from config import load_settings
 
+
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
@@ -9,7 +10,11 @@ class App(ctk.CTk):
         self.on_button_clicked = lambda: print("hi")
         button_hover = "#%02x%02x%02x" % tuple(
             int(int(c, 16) * 0.8)
-            for c in [self.settings["button_color"][1:3], self.settings["button_color"][3:5], self.settings["button_color"][5:7]]
+            for c in [
+                self.settings["button_color"][1:3],
+                self.settings["button_color"][3:5],
+                self.settings["button_color"][5:7],
+            ]
         )
 
         ctk.set_appearance_mode("Light")
@@ -65,11 +70,11 @@ class App(ctk.CTk):
         )
         self.output_label.grid(row=2, column=0, padx=20, pady=20, sticky="nsew")
 
-
         self.bind("<Return>", self._button_clicked)
-            
+
     def _button_clicked(self, event=None):
         self.on_button_clicked()
+
 
 if __name__ == "__main__":
     App()
