@@ -7,7 +7,7 @@ class App(ctk.CTk):
         super().__init__()
 
         self.settings = load_settings()
-        self.on_button_clicked = lambda: print("hi")
+        self.on_button_clicked = lambda: None
         button_hover = "#%02x%02x%02x" % tuple(
             int(int(c, 16) * 0.8)
             for c in [
@@ -53,7 +53,7 @@ class App(ctk.CTk):
             fg_color=self.settings["button_color"],
             hover_color=button_hover,
             font=ctk.CTkFont(family="trebuchet ms", size=25),
-            command=self._button_clicked,
+            command=lambda: self.on_button_clicked(),
             text_color=self.settings["text_color"],
             text="Calculate",
         )
@@ -70,10 +70,7 @@ class App(ctk.CTk):
         )
         self.output_label.grid(row=2, column=0, padx=20, pady=20, sticky="nsew")
 
-        self.bind("<Return>", self._button_clicked)
-
-    def _button_clicked(self, event=None):
-        self.on_button_clicked()
+        self.bind("<Return>", lambda event: self.on_button_clicked())
 
 
 if __name__ == "__main__":
