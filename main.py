@@ -67,28 +67,42 @@ def remove_diacritics(text: str) -> str:
 
 def calculate_configuration():
     try:
-        user_input = app.entry.get()
+        user_input = app.entry.get().strip().split(" ")
         electron_count = None
-        if user_input.isdigit():
-            electron_count = int(user_input)
+        if len(user_input) == 0:
+            return
+        elif len(user_input) > 2:
+            raise IndexError()
+        if user_input[0].isdigit():
+            electron_count = int(user_input[0])
             if electron_count < 1:
                 raise PhysicsError("Number of electrons must be at least 1.")
             if electron_count > 118:
                 raise PhysicsError("Number of electrons exceeds known elements (118).")
-        elif len(user_input) == 2 and hasattr(Element, user_input[0].upper() + user_input[1].lower()):
-            electron_count = getattr(Element, user_input[0].upper() + user_input[1].lower())
+        elif len(user_input[0]) == 2 and hasattr(Element, user_input[0][0].upper() + user_input[0][1].lower()):
+            electron_count = getattr(Element, user_input[0][0].upper() + user_input[0][1].lower())
         else:
-            found_electron_count = ELEMENT_NAME_TO_NUMBER.get(remove_diacritics(user_input.lower()))
+            found_electron_count = ELEMENT_NAME_TO_NUMBER.get(remove_diacritics(user_input[0].lower()))
             if found_electron_count:
                 electron_count = found_electron_count
             else:
                 raise PhysicsError("Element not found in the periodic table.")
+            
         electron_count = int(electron_count)
+        atomic_number = electron_count
+        if len(user_input) > 1:
+            if user_input[1][0] == "+":
+                electron_count -= int(user_input[1][1:])
+            elif user_input[1][0] == "-":
+                electron_count += int(user_input[1][1:])
+            else:
+                raise IndexError()
+
         full_config = get_electron_configuration(electron_count)
         short_config = get_short_electron_configuration(electron_count)
-        element_symbol = ELEMENTS_DATA[electron_count]['symbol']
+        element_symbol = ELEMENTS_DATA[atomic_number]['symbol']
         app.output_label.configure(
-            text=f"{convert_to_script(electron_count, 'sub') + element_symbol}: {full_config}\n\n{convert_to_script(electron_count, 'sub') + element_symbol}: {short_config}"
+            text=f"{convert_to_script(atomic_number, 'sub') + element_symbol + (convert_to_script(user_input[1]) if len(user_input) > 1 else '')}: {full_config}\n\n{convert_to_script(atomic_number, 'sub') + element_symbol + (convert_to_script(user_input[1]) if len(user_input) > 1 else '')}: {short_config}"
         )
     except PhysicsError as e:
         app.output_label.configure(text=str(e))
@@ -96,6 +110,9 @@ def calculate_configuration():
         app.output_label.configure(
             text="Please enter a valid integer for the number of electrons."
         )
+    except IndexError:
+        app.output_label.configure(text="Invalid format for ion charge. Use + or - followed by a number.")
+        return
 
 
 if __name__ == "__main__":
