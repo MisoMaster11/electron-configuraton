@@ -43,7 +43,7 @@ def get_electron_configuration(electron_count: int, skip_orbitals: int = 0) -> s
 
 
 def get_short_electron_configuration(electron_count: int):
-    noble_gases = [
+    NOBLE_GASES = [
         (2, "₂He", 1),
         (10, "₁₀Ne", 3),
         (18, "₁₈Ar", 5),
@@ -51,7 +51,7 @@ def get_short_electron_configuration(electron_count: int):
         (54, "₅₄Xe", 11),
         (86, "₈₆Rn", 15),
     ]
-    for noble_gas in reversed(noble_gases):
+    for noble_gas in reversed(NOBLE_GASES):
         if electron_count > noble_gas[0]:
             return f"[{noble_gas[1]}] " + get_electron_configuration(
                 electron_count - noble_gas[0], skip_orbitals=noble_gas[2]
