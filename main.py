@@ -91,10 +91,10 @@ def calculate_configuration():
         electron_count = int(electron_count)
         atomic_number = electron_count
         if len(user_input) > 1:
-            if user_input[1][0] == "+":
-                electron_count -= int(user_input[1][1:])
-            elif user_input[1][0] == "-":
-                electron_count += int(user_input[1][1:])
+            if user_input[1][-1] == "+":
+                electron_count -= int(user_input[1][:-1])
+            elif user_input[1][-1] == "-":
+                electron_count += int(user_input[1][:-1])
             else:
                 raise IndexError()
 
