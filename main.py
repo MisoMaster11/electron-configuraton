@@ -244,19 +244,24 @@ def calculate_configuration():
             # Formats: "2+", "2-", "+", "-"
             if raw_charge == "+" or raw_charge == "1+":
                 charge = 1
+                raw_charge = "1+"
             elif raw_charge == "-" or raw_charge == "1-":
                 charge = -1
+                raw_charge = "1-"
             elif raw_charge[-1] == "+":
                 charge = int(raw_charge[:-1])
             elif raw_charge[-1] == "-":
                 charge = -int(raw_charge[:-1])
             elif raw_charge[0] == "+":
                 charge = int(raw_charge[1:])
+                raw_charge = raw_charge[1:] + "+"
             elif raw_charge[0] == "-":
                 charge = int(raw_charge)
+                raw_charge = raw_charge[1:] + "-"
             else:
                 try:
                     charge = int(raw_charge)
+                    raw_charge += "+"
                 except:
                     raise IndexError("Invalid charge format")
 
