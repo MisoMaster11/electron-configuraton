@@ -75,7 +75,7 @@ def get_electron_configuration(atomic_number: int, charge: int = 0) -> str:
     
     # store configuration as a dictionary {(n, l): count}
     config = {}
-    
+
     electrons_to_distribute = atomic_number
     
     # Neutral Config
@@ -160,9 +160,9 @@ def get_electron_configuration(atomic_number: int, charge: int = 0) -> str:
             max_occupied_index = i
             
     for i, orbital in enumerate(ORBITALS):
-         if i <= max_occupied_index:
-             count = config.get(orbital, 0)
-             formatted_config.append(
+        if i <= max_occupied_index:
+            count = config.get(orbital, 0)
+            formatted_config.append(
                 f"{orbital[0]}{orbital[1]}{convert_to_script(count)}"
             )
             
@@ -184,8 +184,8 @@ def get_short_electron_configuration(atomic_number: int, charge: int = 0):
     
     for count, symbol, orbitals in NOBLE_GASES:
         if len(parts) > len(orbitals) and parts[:len(orbitals)] == orbitals:
-             remainder = parts[len(orbitals):]
-             return f"[{symbol}] " + " ".join(remainder)
+            remainder = parts[len(orbitals):]
+            return f"[{symbol}] " + " ".join(remainder)
              
     return full_config_str
 
@@ -247,18 +247,18 @@ def calculate_configuration():
             elif raw_charge == "-" or raw_charge == "1-":
                 charge = -1
             elif raw_charge[-1] == "+":
-                 charge = int(raw_charge[:-1])
+                charge = int(raw_charge[:-1])
             elif raw_charge[-1] == "-":
-                 charge = -int(raw_charge[:-1])
+                charge = -int(raw_charge[:-1])
             elif raw_charge[0] == "+":
-                 charge = int(raw_charge[1:])
+                charge = int(raw_charge[1:])
             elif raw_charge[0] == "-":
-                 charge = int(raw_charge)
+                charge = int(raw_charge)
             else:
-                 try:
-                     charge = int(raw_charge)
-                 except:
-                     raise IndexError("Invalid charge format")
+                try:
+                    charge = int(raw_charge)
+                except:
+                    raise IndexError("Invalid charge format")
 
         full_config = get_electron_configuration(atomic_number, charge)
         short_config = get_short_electron_configuration(atomic_number, charge)
