@@ -204,7 +204,7 @@ def calculate_configuration():
         if len(user_input) == 0:
             return
         elif len(user_input) > 2:
-            raise IndexError()
+            raise IndexError("Invalid format. Use '[Element] [Charge]'. E.g. 'Fe 2+'")
             
         # 1. Determine Identity
         element_symbol = ""
@@ -277,11 +277,9 @@ def calculate_configuration():
     except PhysicsError as e:
         app.output_label.configure(text=str(e))
     except ValueError:
-        app.output_label.configure(
-            text="Please enter a valid element or atomic number."
-        )
-    except IndexError:
-        app.output_label.configure(text="Invalid format. Use '[Element] [Charge]'. E.g. 'Fe 2+'")
+        app.output_label.configure(text="Please enter a valid element or atomic number.")
+    except IndexError as e:
+        app.output_label.configure(text=str(e))
         return
 
 
